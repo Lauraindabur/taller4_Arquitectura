@@ -10,12 +10,17 @@ class LibroSerializer(serializers.ModelSerializer):
         model = Libro
         fields = ['id', 'titulo', 'precio', 'stock_actual']
 
+        # Nota : ’ stock_actual ’ puede ser un campo calculado o propiedad del modelo
+
     def get_stock_actual(self, obj):
         inventario = getattr(obj, 'inventario', None)
         return inventario.cantidad if inventario else 0
 
 
 class OrdenInputSerializer(serializers.Serializer):
+    """
+    Serializer para VALIDAR la entrada de datos no necesariamente ligado a un modelo. Actua como un DTO (Data Transfer Object)
+    """
     libro_id = serializers.IntegerField()
     direccion_envio = serializers.CharField(max_length=200)
     cantidad = serializers.IntegerField(min_value=1, default=1)

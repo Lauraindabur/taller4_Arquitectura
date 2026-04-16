@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Compra Rápida</title>
+    </head>
+    <body>
+        <h1>Compra Rápida (Modo Spaghetti)</h1>
+
+        <p>
+            Libro: <strong>{{ libro.titulo }}</strong>
+        </p>
+
+        <p>
+            Precio Final (IVA): $ {{ total }}
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" style="background: orange;">
+                Comprar Ya
+            </button>
+        </form>
+
+    </body>
+</html>

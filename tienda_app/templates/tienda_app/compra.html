@@ -6,18 +6,27 @@
 <body>
     <h1>Procesar Compra</h1>
 
+    {% if libro %}
+        <h2>{{ libro.titulo }}</h2>
+        <p>Precio con IVA: <strong>${{ total }}</strong></p>
+        <p>Stock actual: <strong>{{ stock_actual }}</strong></p>
+    {% endif %}
+
     {% if mensaje_exito %}
         <div style="color: green; font-weight: bold;">{{ mensaje_exito }}</div>
-        <a href="/">Volver a la tienda</a>
+
+        {% if stock_antes and stock_despues is not None %}
+            <p>Stock antes: <strong>{{ stock_antes }}</strong></p>
+            <p>Stock despues: <strong>{{ stock_despues }}</strong></p>
+        {% endif %}
+
+        <a href="/compra/3/">Volver a la tienda</a>
     {% else %}
         {% if error %}
             <div style="color: red; border: 1px solid red; padding: 10px;">
                 {{ error }}
             </div>
         {% endif %}
-
-        <h2>{{ libro.titulo }}</h2>
-        <p>Precio con IVA: <strong>${{ total }}</strong></p>
 
         <form method="post">
             {% csrf_token %}

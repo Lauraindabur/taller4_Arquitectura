@@ -3,7 +3,6 @@ from decimal import Decimal
 from .logic import CalculadorImpuestos
 from ..models import Orden
 
-
 class OrdenBuilder:
     def __init__(self):
         self.reset()
@@ -16,7 +15,7 @@ class OrdenBuilder:
 
     def con_usuario(self, usuario):
         self._usuario = usuario
-        return self
+        return self  # Permite Fluent Interface
 
     def con_libro(self, libro):
         self._libro = libro
